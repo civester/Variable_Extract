@@ -9,6 +9,9 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=16GB
 
+module purge
+module load python/3.8.3
+module load blast
 
 input_dir="/gpfs/home/sradak/Variable_Extract/files/" # input fasta files
 pydir="/gpfs/home/sradak/Variable_Extract/pythonfiles/"
@@ -20,7 +23,7 @@ num_regions=6
 
 
 # export anything written to the terminal into a log file
-log_file="logs/${library}_extract.log"
+log_file="logs/${SLURM_JOB_ID}_${library}_extract.log"
 exec > "$log_file" 2>&1
 
 
